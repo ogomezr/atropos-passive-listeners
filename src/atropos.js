@@ -438,14 +438,15 @@ function Atropos(originalParams = {}) {
     if ($(childrenRootEl, '[data-atropos-opacity]')) {
       setChildrenOffset({ opacityOnly: true });
     }
-    $on(document, 'click', onDocumentClick);
-    $on(eventsEl, 'pointerdown', onPointerEnter);
-    $on(eventsEl, 'pointerenter', onPointerEnter);
-    $on(eventsEl, 'pointermove', onPointerMove);
-    $on(eventsEl, 'touchmove', onTouchMove);
-    $on(eventsEl, 'pointerleave', onPointerLeave);
-    $on(eventsEl, 'pointerup', onPointerLeave);
-    $on(eventsEl, 'lostpointercapture', onPointerLeave);
+    
+    $on(document, 'click', onDocumentClick, {passive: true});
+    $on(eventsEl, 'pointerdown', onPointerEnter, {passive: true});
+    $on(eventsEl, 'pointerenter', onPointerEnter, {passive: true});
+    $on(eventsEl, 'pointermove', onPointerMove, {passive: true});
+    $on(eventsEl, 'touchmove', onTouchMove, {passive: true});
+    $on(eventsEl, 'pointerleave', onPointerLeave, {passive: true});
+    $on(eventsEl, 'pointerup', onPointerLeave, {passive: true});
+    $on(eventsEl, 'lostpointercapture', onPointerLeave, {passive: true});
 
     if (params.alwaysActive) {
       activate();
